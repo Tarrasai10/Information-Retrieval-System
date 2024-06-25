@@ -7,3 +7,4 @@ boto3
 huggingface_hub
 sentence-transformers
 faiss-cpu
+wikipedia-api
