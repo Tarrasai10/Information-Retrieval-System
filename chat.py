@@ -268,10 +268,10 @@ def load_faiss_database(index_path):
 
 @cache_resource
 def load_llm():
-    HUGGINGFACEHUB_API_TOKEN = "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"
     hf=HuggingFaceHub(
     repo_id="mistralai/Mistral-7B-v0.1",
     model_kwargs={"temperature":0.1,"max_length":500}
+    huggingfacehub_api_token = "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"
 
 )
     # llm = ChatGroq(groq_api_key="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", model="mixtral-8x7b-32768", temperature=0.5)
