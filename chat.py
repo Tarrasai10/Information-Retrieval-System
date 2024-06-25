@@ -330,6 +330,8 @@ from langchain.agents import initialize_agent, AgentType
 from langchain.tools.retriever import create_retriever_tool
 from langchain_community.agent_toolkits.load_tools import load_tools
 from langchain_community.llms import HuggingFaceHub
+import faiss
+import wikipediaapi  # Ensure you import wikipedia-api
 
 st.set_page_config(
     page_title="ChatBot",
@@ -370,6 +372,7 @@ def load_llm():
         llm = ChatGroq(groq_api_key="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", model="mixtral-8x7b-32768", temperature=0.5)
         return llm
 
+
 uploaded_files = st.file_uploader("Upload PDFs", type="pdf", accept_multiple_files=True)
 if uploaded_files:
     documents = []
@@ -405,5 +408,6 @@ if uploaded_files:
         
         result = agent.run(input_text)
         st.write(result)
+
 
 
