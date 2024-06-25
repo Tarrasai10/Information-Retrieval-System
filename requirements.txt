@@ -5,3 +5,4 @@ langchain_community
 langchain_groq
 boto3
 huggingface_hub
+sentence-transformers
