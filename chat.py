@@ -232,6 +232,7 @@ from streamlit.runtime.caching import cache_resource
 from langchain.agents import initialize_agent, AgentType
 from langchain.tools.retriever import create_retriever_tool
 from langchain_community.agent_toolkits.load_tools import load_tools
+from langchain_community.llms import HuggingFaceHub
 
 st.set_page_config(
     page_title="ChatBot",
@@ -267,7 +268,13 @@ def load_faiss_database(index_path):
 
 @cache_resource
 def load_llm():
-    llm = ChatGroq(groq_api_key="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", model="mixtral-8x7b-32768", temperature=0.5)
+    HUGGINGFACEHUB_API_TOKEN = "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"
+    hf=HuggingFaceHub(
+    repo_id="mistralai/Mistral-7B-v0.1",
+    model_kwargs={"temperature":0.1,"max_length":500}
+
+)
+    # llm = ChatGroq(groq_api_key="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", model="mixtral-8x7b-32768", temperature=0.5)
     return llm
 
 uploaded_files = st.file_uploader("Upload PDFs", type="pdf", accept_multiple_files=True)
