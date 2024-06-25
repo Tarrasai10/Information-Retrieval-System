@@ -270,7 +270,7 @@ def load_faiss_database(index_path):
 def load_llm():
     hf=HuggingFaceHub(
     repo_id="mistralai/Mistral-7B-v0.1",
-    model_kwargs={"temperature":0.1,"max_length":500}
+    model_kwargs={"temperature":0.1,"max_length":500},
     huggingfacehub_api_token = "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"
 
 )
