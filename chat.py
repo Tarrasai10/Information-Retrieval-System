@@ -275,7 +275,7 @@ def load_llm():
 
 )
     # llm = ChatGroq(groq_api_key="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", model="mixtral-8x7b-32768", temperature=0.5)
-    return llm
+    return hf
 
 uploaded_files = st.file_uploader("Upload PDFs", type="pdf", accept_multiple_files=True)
 if uploaded_files:
