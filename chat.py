@@ -14,12 +14,12 @@ import faiss
 import wikipediaapi
 
 st.set_page_config(
-    page_title="Information Retrieval System",
+    page_title="Q-A System",
     page_icon=":robot_face:",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
-st.header("Chat Bot")
+st.header("Information Retrieval System")
 
 @st.cache_data
 def load_pdf(file):
