@@ -6,6 +6,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
 from langchain_groq import ChatGroq
+from streamlit.runtime.caching import cache_resource
 from langchain.agents import initialize_agent, AgentType
 from langchain.tools.retriever import create_retriever_tool
 from langchain_community.agent_toolkits.load_tools import load_tools
@@ -20,6 +21,7 @@ st.set_page_config(
 )
 st.header("Chat Bot")
 
+@st.cache_data
 def load_pdf(file):
     pdf_reader = PdfReader(file)
     pdf_text = ""
@@ -27,6 +29,7 @@ def load_pdf(file):
         pdf_text += page.extract_text()
     return pdf_text
 
+@st.cache_data
 def create_faiss_database(_documents, index_path):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=100)
     text = text_splitter.split_documents(_documents)
@@ -35,6 +38,7 @@ def create_faiss_database(_documents, index_path):
     db.save_local(index_path)
     return db
 
+@st.cache_data
 def load_faiss_database(index_path):
     if os.path.exists(index_path):
         embeddings = HuggingFaceEmbeddings()
@@ -43,6 +47,7 @@ def load_faiss_database(index_path):
         db = None
     return db
 
+@cache_resource
 def load_llm():
     llm = ChatGroq(groq_api_key="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", model="mixtral-8x7b-32768", temperature=0.5)
     return llm
